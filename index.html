@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FFF9F5">
+  <meta name="description" content="NoteSnap helps students summarize notes and practice multiple-choice questions.">
+  <title>NoteSnap — Notes se Quick Revision</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">📚</div>
+        <span>NoteSnap</span>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a href="#dashboard" class="nav-link active" data-page="dashboard">
+          <span class="nav-icon">🏠</span> Dashboard
+        </a>
+        <a href="#summary" class="nav-link" data-page="summary">
+          <span class="nav-icon">📝</span> Quick Summary
+        </a>
+        <a href="#quiz" class="nav-link" data-page="quiz">
+          <span class="nav-icon">🧠</span> Practice MCQs
+        </a>
+        <a href="#flashcards" class="nav-link" data-page="flashcards">
+    <span class="nav-icon">🃏</span> Flashcards
+</a>
+      </nav>
+
+      <div class="card" style="margin-top:auto;">
+        <div class="card-icon">💡</div>
+        <h3>Study tip</h3>
+        <p>Small revision sessions every day can help you remember more.</p>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR SMART STUDY SPACE</p>
+          <h1>Hey, ready to learn? 👋</h1>
+          <p class="subtitle">Turn your notes into quick revision material.</p>
+        </div>
+        <span class="badge">✨ Study smarter</span>
+      </header>
+
+      <!-- DASHBOARD PAGE -->
+      <section id="dashboard" class="page-section">
+        <div class="hero">
+          <p class="eyebrow">WELCOME TO NOTESNAP</p>
+          <h1>Learn smarter, revise faster. </h1>
+          <p>
+            Upload your notes, create quick summaries, and test your
+            knowledge with practice questions — all in one place.
+          </p>
+          <div class="button-row">
+            <button class="btn btn-primary" id="goSummary">
+              📝 Create a summary
+            </button>
+            <button class="btn btn-secondary" id="goQuiz">
+              🧠 Practice MCQs
+            </button>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <h2>Your study tools</h2>
+          <p>Choose what you want to do today.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="feature-card">
+            <div class="feature-icon">📝</div>
+            <span class="badge">Quick revision</span>
+            <h3>Quick Summary</h3>
+            <p>
+              Turn long notes into short, easy-to-read revision points.
+            </p>
+            <button class="btn btn-primary" data-open="summary">
+              Make summary →
+            </button>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon blue">🧠</div>
+            <span class="badge badge-blue">Test yourself</span>
+            <h3>Practice MCQs</h3>
+            <p>
+              Generate practice questions from your notes and check your answers.
+            </p>
+            <button class="btn btn-secondary" data-open="quiz">
+              Start practice →
+            </button>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon yellow">📂</div>
+            <span class="badge badge-yellow">Get started</span>
+            <h3>Upload your notes</h3>
+            <p>
+              Load a TXT, MD, or CSV file and use its text for revision.
+            </p>
+            <button class="btn btn-secondary" id="goUpload">
+              Upload notes →
+            </button>
+          </article>
+        </div>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Quick start</h2>
+              <p>Paste your study material below to get started.</p>
+            </div>
+            <span class="badge">Your workspace</span>
+          </div>
+
+          <div class="form-group">
+            <label for="dashboardNotes">Your notes</label>
+            <textarea
+              id="dashboardNotes"
+              placeholder="Paste your class notes, chapter text, or study material here..."
+            ></textarea>
+          </div>
+
+          <div class="button-row">
+            <button class="btn btn-primary" id="dashboardSummarize">
+              ✨ Generate summary
+            </button>
+            <button class="btn btn-secondary" id="dashboardQuiz">
+              Create practice MCQs
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <!-- QUICK SUMMARY PAGE -->
+      <section id="summary" class="page-section hidden">
+        <div class="page-header">
+          <div>
+            <p class="eyebrow">UNDERSTAND THE KEY POINTS</p>
+            <h1>Quick Summary 📝</h1>
+            <p class="subtitle">
+              Make your study notes easier to review.
+            </p>
+          </div>
+          <span class="badge">Revision mode</span>
+        </div>
+
+        <section class="panel">
+          <div class="form-group">
+            <label for="summaryInput">Paste your notes</label>
+            <textarea
+              id="summaryInput"
+              placeholder="Paste your notes here..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="notesFile">Or upload a text file</label>
+            <div class="upload-area">
+              <div class="upload-icon">📁</div>
+              <h3>Choose your study file</h3>
+              <p>Supported formats: TXT, MD, CSV</p>
+              <input
+                type="file"
+                id="notesFile"
+                accept=".txt,.md,.csv,text/plain,text/markdown,text/csv"
+              >
+              <p id="fileStatus" role="status">No file selected.</p>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button class="btn btn-primary" id="generateSummary">
+              ✨ Generate summary
+            </button>
+            <button class="btn btn-secondary" id="clearSummary">
+              Clear
+            </button>
+          </div>
+        </section>
+
+        <section class="panel mt-3" aria-live="polite">
+          <div class="panel-header">
+            <div>
+              <h2>Your summary</h2>
+              <p>Key points extracted from your notes.</p>
+            </div>
+            <span class="badge badge-blue">Revision notes</span>
+          </div>
+
+          <div id="summaryOutput" class="summary-box">
+            <div class="empty-state">
+              <div class="empty-state-icon">✨</div>
+              <h3>Your summary will appear here</h3>
+              <p>Paste or upload your notes, then select Generate summary.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- PRACTICE MCQS PAGE -->
+      <section id="quiz" class="page-section hidden">
+        <div class="page-header">
+          <div>
+            <p class="eyebrow">PRACTICE MAKES PROGRESS</p>
+            <h1>Practice MCQs 🧠</h1>
+            <p class="subtitle">
+              Check your understanding of your study material.
+            </p>
+          </div>
+          <span class="badge badge-blue">Quiz time</span>
+        </div>
+
+        <section class="panel">
+          <div class="form-group">
+            <label for="quizInput">Paste your notes</label>
+            <textarea
+              id="quizInput"
+              placeholder="Paste notes here to create practice questions..."
+            ></textarea>
+          </div>
+
+          <div class="button-row">
+            <button class="btn btn-primary" id="generateQuiz">
+              🎯 Generate MCQs
+            </button>
+            <button class="btn btn-secondary" id="clearQuiz">
+              Clear
+            </button>
+          </div>
+        </section>
+
+        <section class="panel mt-3">
+          <div class="panel-header">
+            <div>
+              <h2>Your practice quiz</h2>
+              <p id="quizInstructions">
+                Generate questions from your notes to begin.
+              </p>
+            </div>
+            <span class="badge badge-yellow" id="quizScore">Score: 0</span>
+          </div>
+
+          <div id="quizOutput" aria-live="polite">
+            <div class="empty-state">
+              <div class="empty-state-icon">🎯</div>
+              <h3>Your questions will appear here</h3>
+              <p>Add your notes and select Generate MCQs.</p>
+            </div>
+          </div>
+
+          <div id="quizActions" class="button-row mt-2 hidden">
+            <button class="btn btn-primary" id="checkAnswers">
+              Check answers
+            </button>
+            <button class="btn btn-secondary" id="retryQuiz">
+              Try again
+            </button>
+          </div>
+
+          <p id="quizFeedback" class="feedback hidden" role="status"></p>
+        </section>
+      </section>
+
+
+<!-- FLASHCARDS PAGE -->
+<section id="flashcards" class="page-section hidden">
+  <div class="page-header">
+    <div>
+      <h1>Flashcards 🃏</h1>
+      <p class="subtitle">Create flashcards from your notes.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="form-group">
+      <label for="flashcardInput">Paste your notes</label>
+      <textarea
+        id="flashcardInput"
+        placeholder="Paste your notes here..."
+        rows="6"
+      ></textarea>
+    </div>
+
+    <div class="button-row">
+      <button class="btn btn-primary" id="generateFlashcards">
+        Generate Flashcards
+      </button>
+      <button class="btn btn-secondary" id="clearFlashcards">
+        Clear
+      </button>
+    </div>
+  </div>
+<div class="panel hidden" id="flashcardArea">
+
+  <p id="flashcardCounter">Card 1 of 1</p>
+
+  <div class="flashcard-scene">
+    <div class="flashcard-inner" id="flashcardInner">
+
+      <!-- FRONT OF CARD -->
+      <div class="flashcard-face flashcard-front">
+
+        <span class="flashcard-tag">QUESTION</span>
+
+        <h2 id="flashcardQuestion">
+          Your question will appear here
+        </h2>
+
+        <div id="writeAnswerArea" class="hidden">
+          <textarea
+            id="userAnswer"
+            rows="4"
+            placeholder="Write your answer here..."
+          ></textarea>
+        </div>
+
+        <div class="flashcard-actions">
+          <button id="showAnswerInput" type="button">
+            ✍️ Answer
+          </button>
+
+          <button id="flipFlashcard" type="button">
+            Reveal Answer
+          </button>
+        </div>
+
+      </div>
+
+      <!-- BACK OF CARD -->
+      <div class="flashcard-face flashcard-back">
+
+        <span class="flashcard-tag">CORRECT ANSWER</span>
+
+        <h2 id="flashcardAnswer"></h2>
+
+        <button id="backToQuestion" type="button">
+          Back to Question
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="flashcard-navigation">
+    <button id="previousFlashcard" type="button">Previous</button>
+    <button id="nextFlashcard" type="button">Next</button>
+  </div>
+
+</div>
+  
+
+    <div class="button-row">
+      <button class="btn btn-secondary" id="previousFlashcard">
+        Previous
+      </button>
+      <button class="btn btn-primary" id="flipFlashcard">
+        Reveal Answer
+      </button>
+      <button class="btn btn-secondary" id="nextFlashcard">
+        Next
+      </button>
+    </div>
+  </div>
+</section>
+
+
+      <!-- FOOTER -->
+      <footer style="padding:30px 0 10px; text-align:center;">
+        <p>Made with  for smarter studying · NoteSnap</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
